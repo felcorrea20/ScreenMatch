@@ -7,6 +7,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -48,6 +49,11 @@ public class PrincipalComBusca {
             System.out.println("====================");
             System.out.println(meuTitulo);
 
+            FileWriter escrita = new FileWriter(meuTitulo.getNome() + ".json" );
+            escrita.write(json);
+            escrita.close();
+            System.out.println("Arquivo json criado com sucesso!");
+
         } catch (NumberFormatException  e) {
 
             System.out.println("\nAcontececu um erro:");
@@ -62,6 +68,8 @@ public class PrincipalComBusca {
 
             System.out.println(e.getMessage());
 
+        } finally {
+            leitor.close();
         }
 
         System.out.println("\n\nFinalizando...");
